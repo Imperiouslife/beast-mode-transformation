@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beast Mode - Reacondicionamiento Mental Extremo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23333" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            padding: 40px;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 4.5em;
+            font-weight: 900;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #ff0000, #ff6600, #ffff00, #ff0000);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s ease-in-out infinite;
+            text-shadow: 0 0 50px rgba(255, 0, 0, 0.5);
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8em;
+            color: #cccccc;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .warning-banner {
+            background: linear-gradient(45deg, #ff0000, #cc0000);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            border: 2px solid #ffff00;
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .warning-text {
+            font-size: 1.3em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .features-section {
+            padding: 100px 40px;
+            background: rgba(26, 26, 46, 0.5);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #ff6600;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .benefit-card {
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.1), rgba(255, 102, 0, 0.1));
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid #ff0000;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 0, 0, 0.3);
+        }
+
+        .benefit-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover .benefit-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .benefit-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #ffff00;
+            text-transform: uppercase;
+        }
+
+        .benefit-description {
+            font-size: 1.1em;
+            color: #cccccc;
+            line-height: 1.6;
+        }
+
+        .transformation-section {
+            padding: 100px 40px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(26, 26, 46, 0.8));
+            text-align: center;
+        }
+
+        .before-after {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin: 60px 0;
+        }
+
+        .before, .after {
+            padding: 40px;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .before {
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.2), rgba(139, 0, 0, 0.2));
+            border: 2px solid #ff0000;
+        }
+
+        .after {
+            background: linear-gradient(135deg, rgba(0, 255, 0, 0.2), rgba(0, 139, 0, 0.2));
+            border: 2px solid #00ff00;
+        }
+
+        .ba-title {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .ba-list {
+            text-align: left;
+            font-size: 1.2em;
+            line-height: 2;
+        }
+
+        .ba-list li {
+            margin-bottom: 10px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .before .ba-list li:before {
+            content: "❌";
+            position: absolute;
+            left: 0;
+        }
+
+        .after .ba-list li:before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+        }
+
+        .creator-section {
+            padding: 100px 40px;
+            background: rgba(15, 15, 35, 0.9);
+            text-align: center;
+        }
+
+        .creator-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(255, 102, 0, 0.1), rgba(255, 255, 0, 0.1));
+            padding: 50px;
+            border-radius: 25px;
+            border: 3px solid #ff6600;
+            box-shadow: 0 20px 50px rgba(255, 102, 0, 0.2);
+        }
+
+        .creator-name {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #ff6600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .creator-title {
+            font-size: 1.3em;
+            color: #ffff00;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .creator-message {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #cccccc;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .commitment-section {
+            padding: 100px 40px;
+            background: linear-gradient(45deg, #ff0000, #cc0000);
+            text-align: center;
+        }
+
+        .commitment-box {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 50px;
+            border-radius: 20px;
+            border: 3px solid #ffff00;
+        }
+
+        .commitment-title {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            color: #ffff00;
+        }
+
+        .commitment-text {
+            font-size: 1.4em;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .accept-btn {
+            background: linear-gradient(45deg, #00ff00, #00cc00);
+            border: none;
+            color: black;
+            padding: 20px 50px;
+            border-radius: 15px;
+            font-size: 1.5em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 3px solid #ffff00;
+            margin-bottom: 30px;
+        }
+
+        .accept-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 255, 0, 0.4);
+        }
+
+        .direct-access-btn {
+            background: linear-gradient(45deg, #ff6600, #ff9900);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid #ffff00;
+            text-transform: uppercase;
+        }
+
+        .direct-access-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 102, 0, 0.4);
+        }
+
+        .inspiration-section {
+            padding: 100px 40px;
+            background: linear-gradient(135deg, #0f0f23, #1a1a2e);
+        }
+
+        .quote-carousel {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .quote {
+            font-size: 2em;
+            font-style: italic;
+            color: #ffff00;
+            margin-bottom: 20px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border-left: 5px solid #ff6600;
+            transition: opacity 0.5s ease;
+        }
+
+        .quote-author {
+            font-size: 1.2em;
+            color: #ff6600;
+            font-weight: bold;
+            transition: opacity 0.5s ease;
+        }
+
+        .floating-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #ff6600;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: float 6s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3em;
+            }
+            
+            .before-after {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a2e;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #ff0000, #ff6600);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #ff6600, #ffff00);
+        }
+    </style>
+</head>
+<body>
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="floating-particles" id="particles"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">BEAST MODE<br>ACTIVADO</h1>
+            <p class="hero-subtitle">Reacondicionamiento Mental Extremo para Transformación Total</p>
+            
+            <div class="warning-banner">
+                <p class="warning-text">⚠️ ADVERTENCIA: Este sistema cambiará tu vida para siempre ⚠️</p>
+            </div>
+            
+            <p style="font-size: 1.3em; color: #cccccc; max-width: 800px; margin: 0 auto;">
+                No es un curso más. No es motivación barata. Es un protocolo científico de 30 días que reconstruirá tu mente, eliminará la depresión y te convertirá en una versión imparable de ti mismo.
+            </p>
+        </div>
+    </section>"     <!-- BENEFITS SECTION -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">Lo Que Vas a Ganar</h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <span class="benefit-icon">🧠</span>
+                    <h3 class="benefit-title">Eliminación de Depresión</h3>
+                    <p class="benefit-description">
+                        Protocolo científico que aumenta dopamina 250%, regenera neurotransmisores y elimina la química de la depresión naturalmente. Sin pastillas, solo ciencia aplicada.
+                    </p>
+                </div>
+                
+                <div class="benefit-card">
+                    <span class="benefit-icon">💰</span>
+                    <h3 class="benefit-title">Mentalidad Financiera Imparable</h3>
+                    <p class="benefit-description">
+                        Obsesión productiva con generar dinero. Eliminas excusas, te enfocas solo en resultados y desarrollas la mentalidad de los millonarios.
+                    </p>
+                </div>
+                
+                <div class="benefit-card">
+                    <span class="benefit-icon">⚡</span>
+                    <h3 class="benefit-title">Energía Sobrehumana</h3>
+                    <p class="benefit-description">
+                        Despertar a las 4:30 AM se vuelve natural. Ejercicio intenso sin fatiga. Trabajar 12 horas sin cansancio. Tu cuerpo se convierte en una máquina.
+                    </p>
+                </div>
+                
+                <div class="benefit-card">
+                    <span class="benefit-icon">🎯</span>
+                    <h3 class="benefit-title">Disciplina de Acero</h3>
+                    <p class="benefit-description">
+                        Nunca más "mañana empiezo". Nunca más excusas. Desarrollas la disciplina de un Navy SEAL aplicada a tus objetivos de vida.
+                    </p>
+                </div>
+                
+                <div class="benefit-card">
+                    <span class="benefit-icon">🔥</span>
+                    <h3 class="benefit-title">Resistencia Mental Extrema</h3>
+                    <p class="benefit-description">
+                        Los problemas que antes te destruían ahora son solo obstáculos menores. Desarrollas la mentalidad "40% Rule" de David Goggins.
+                    </p>
+                </div>
+                
+                <div class="benefit-card">
+                    <span class="benefit-icon">🏆</span>
+                    <h3 class="benefit-title">Confianza Inquebrantable</h3>
+                    <p class="benefit-description">
+                        Eliminas el miedo al fracaso. Te conviertes en alguien que actúa sin dudas, toma decisiones rápidas y lidera naturalmente.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- TRANSFORMATION SECTION -->
+        <section class="transformation-section">
+            <div class="container">
+                <h2 class="section-title">Tu Transformación en 30 Días</h2>
+                
+                <div class="before-after">
+                    <div class="before">
+                        <h3 class="ba-title" style="color: #ff4444;">ANTES (TÚ ACTUAL)</h3>
+                        <ul class="ba-list">
+                            <li>Depresión y falta de energía constante</li>
+                            <li>Procrastinación en tareas importantes</li>
+                            <li>Descontrol financiero y estrés por dinero</li>
+                            <li>Levantarse tarde y sin propósito</li>
+                            <li>Excusas constantes para no actuar</li>
+                            <li>Baja autoestima y confianza</li>
+                            <li>Negocios fallidos por falta de consistencia</li>
+                            <li>Ciclos de motivación-depresión</li>
+                            <li>Miedo al fracaso paraliza decisiones</li>
+                            <li>Sensación de vida sin control</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="after">
+                        <h3 class="ba-title" style="color: #44ff44;">DESPUÉS (TÚ BEAST)</h3>
+                        <ul class="ba-list">
+                            <li>Energía sobrehumana y claridad mental</li>
+                            <li>Ejecución inmediata sin procrastinación</li>
+                            <li>Control total de finanzas y generación de dinero</li>
+                            <li>Despertar 4:30 AM con propósito claro</li>
+                            <li>Cero excusas, solo resultados</li>
+                            <li>Confianza inquebrantable en cualquier situación</li>
+                            <li>Negocios exitosos por disciplina extrema</li>
+                            <li>Estado mental consistente y poderoso</li>
+                            <li>Fracasos se vuelven combustible para crecer</li>
+                            <li>Dominio completo de tu destino</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CREATOR SECTION -->
+        <section class="creator-section">
+            <div class="container">
+                <h2 class="section-title">Sobre el Creador</h2>
+                
+                <div class="creator-card">
+                    <h3 class="creator-name">Jheyner Duvan Villanueva</h3>
+                    <p class="creator-title">Diseñador de Sistemas de Transformación Mental</p>
+                    
+                    <div class="creator-message">
+                        <p>He estado donde tú estás ahora. Depresión, negocios fallidos, descontrol financiero, cansancio constante. Perdí años de mi vida en ciclos de motivación temporal seguidos de recaídas brutales.</p>
+                        
+                        <p>Después de estudiar neurociencia, protocolos militares, metodologías de atletas de élite y sistemas de los empresarios más exitosos del mundo, diseñé este protocolo que cambió mi vida por completo.</p>
+                        
+                        <p>No es teoría. No es motivación barata. Son técnicas que funcionan a nivel biológico y psicológico, probadas en mi propia transformación y ahora disponibles para ti.</p>
+                        
+                        <p><strong>Mi misión es simple:</strong> Que ni una sola persona más sufra lo que yo sufrí cuando la solución está al alcance de todos. Este sistema es mi regalo al mundo.</p>
+                    </div>
+                    
+                    <p style="font-style: italic; color: #ff6600; font-size: 1.2em;">
+                        "Si este sistema puede salvar aunque sea una vida de la depresión y el fracaso, cada hora invertida en crearlo habrá valido la pena."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMMITMENT SECTION -->
+        <section class="commitment-section">
+            <div class="container">
+                <div class="commitment-box">
+                    <h2 class="commitment-title">Debes Aceptar Este Proceso</h2>
+                    
+                    <p class="commitment-text">
+                        <strong>ADVERTENCIA:</strong> Este no es un sistema para débiles mentales. Los próximos 30 días van a ser los más duros de tu vida. 
+                        Vas a querer rendirte. Vas a odiar el proceso. Tu mente va a inventar mil excusas.
+                    </p>
+                    
+                    <p class="commitment-text">
+                        <strong>PERO</strong> si completas este protocolo, serás una persona completamente diferente. 
+                        Tu vida actual será irreconocible comparada con la bestia en que te convertirás.
+                    </p>
+                    
+                    <p class="commitment-text">
+                        <strong>REQUISITOS:</strong><br>
+                        ✅ Compromiso absoluto por 30 días<br>
+                        ✅ Seguir TODAS las instrucciones sin excepción<br>
+                        ✅ Aceptar que el dolor temporal crea fortaleza permanente<br>
+                        ✅ Estar dispuesto a sacrificar tu zona de comfort para siempre
+                    </p>
+                    
+                    <button class="accept-btn" onclick="accessBeastMode()">
+                        ACEPTO LA TRANSFORMACIÓN EXTREMA
+                    </button>
+                    
+                    <div style="margin-top: 30px; padding: 20px; background: rgba(255, 102, 0, 0.1); border-radius: 10px; border: 1px solid #ff6600;">
+                        <p style="color: #ff6600; font-size: 1.1em; margin-bottom: 15px;"><strong>🚀 ¿LISTO PARA EMPEZAR?</strong></p>
+                        <button class="direct-access-btn" onclick="redirectToBeastSystem()">
+                            📊 ACCESO DIRECTO AL SISTEMA BEAST MODE
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INSPIRATION SECTION -->
+        <section class="inspiration-section">
+            <div class="container">
+                <h2 class="section-title">Mensajes de Poder</h2>
+                
+                <div class="quote-carousel">
+                    <div class="quote" id="inspirationQuote">
+                        "El dolor que sientes hoy es la fuerza que necesitarás mañana. Cada momento de sufrimiento que superes te convierte en alguien más poderoso."
+                    </div>
+                    <div class="quote-author" id="quoteAuthor">- Jheyner Duvan Villanueva</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Quotes inspiracionales
+        const inspirationalQuotes = [
+            {
+                text: "El dolor que sientes hoy es la fuerza que necesitarás mañana. Cada momento de sufrimiento que superes te convierte en alguien más poderoso.",
+                author: "Jheyner Duvan Villanueva"
+            },
+            {
+                text: "No existe el 'no puedo'. Solo existe el 'no quiero sufrir lo suficiente para lograrlo'. La diferencia entre el éxito y el fracaso es tu tolerancia al dolor.",
+                author: "Jheyner Duvan Villanueva"
+            },
+            {
+                text: "Tu versión actual es tu zona de comfort. Tu versión Beast es tu destino. El puente entre ambas es este protocolo de 30 días.",
+                author: "Jheyner Duvan Villanueva"
+            },
+            {
+                text: "La depresión no es una enfermedad, es un síntoma de una vida sin propósito. Este sistema te devuelve el control de tu destino.",
+                author: "Jheyner Duvan Villanueva"
+            },
+            {
+                text: "Cada día que no actúas es un día que tu futuro yo va a lamentar. Cada día que actúas es un paso hacia la persona imparable que está esperando nacer.",
+                author: "Jheyner Duvan Villanueva"
+            },
+            {
+                text: "Los excesos de ayer son las limitaciones de hoy. Las disciplinas de hoy son los superpoderes de mañana.",
+                author: "Jheyner Duvan Villanueva"
+            }
+        ];
+
+        let currentQuoteIndex = 0;
+
+        // Validar login - VERSIÓN CORREGIDA
+        function validateLogin() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const errorMessage = document.getElementById('errorMessage');
+
+            console.log('Usuario ingresado:', username);
+            console.log('Contraseña ingresada:', password);
+
+            if (username.toLowerCase() === 'beast' && password === 'soyganador') {
+                console.log('Login exitoso');
+                errorMessage.style.display = 'none';
+                
+                // Ocultar login y mostrar contenido
+                document.getElementById('loginSection').style.display = 'none';
+                document.getElementById('mainContent').style.display = 'block';
+                
+                // Inicializar efectos del contenido principal
+                createParticles('mainParticles');
+                startQuoteRotation();
+                initMainContent();
+                
+                // Scroll al inicio
+                window.scrollTo(0, 0);
+                
+                // Mostrar notificación de bienvenida
+                setTimeout(() => {
+                    alert('🔥 ¡BIENVENIDO AL BEAST MODE! 🔥\n\nHas accedido al sistema de transformación más poderoso del mundo.\n\nPrepárate para cambiar tu vida para siempre.');
+                }, 1000);
+                
+            } else {
+                console.log('Login fallido');
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = '❌ Credenciales incorrectas. Usuario: "beast" | Contraseña: "soyganador"';
+                
+                // Shake effect mejorado
+                const loginBox = document.querySelector('.login-box');
+                loginBox.style.animation = 'shake 0.5s';
+                loginBox.style.border = '2px solid #ff0000';
+                
+                setTimeout(() => {
+                    loginBox.style.animation = '';
+                    loginBox.style.border = '2px solid #ff0000';
+                }, 500);
+                
+                // Limpiar campos
+                document.getElementById('password').value = '';
+                document.getElementById('password').focus();
+            }
+        }
+
+        // Acceder a Beast Mode
+        function accessBeastMode() {
+            const confirmation = confirm('🔥 ¿ESTÁS ABSOLUTAMENTE SEGURO? 🔥\n\nUna vez que inicies, no habrá vuelta atrás. Los próximos 30 días definirán el resto de tu vida.\n\n¿ACEPTAS EL DESAFÍO EXTREMO?');
+            
+            if (confirmation) {
+                // Mostrar mensaje de activación
+                showBeastModeActivated();
+            }
+        }
+
+        // Mostrar Beast Mode activado
+        function showBeastModeActivated() {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                animation: fadeIn 0.5s ease;
+            `;
+            
+            modal.innerHTML = `
+                <div style="background: linear-gradient(45deg, #ff0000, #ff4444); padding: 50px; border-radius: 20px; text-align: center; border: 5px solid #ffff00; max-width: 600px; position: relative;">
+                    <h2 style="color: #ffff00; font-size: 3em; margin-bottom: 20px; animation: pulse 1s infinite;">🔥 BEAST MODE ACTIVADO 🔥</h2>
+                    <p style="color: white; font-size: 1.3em; margin-bottom: 30px; font-weight: bold;">¡Bienvenido a tu transformación extrema!</p>
+                    <p style="color: white; font-size: 1.1em; margin-bottom: 40px;">Tu journey de 30 días está a punto de comenzar. Prepárate para convertirte en la versión más poderosa de ti mismo.</p>
+                    
+                    <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                        <button onclick="redirectToBeastSystem()" style="background: linear-gradient(45deg, #00ff00, #00cc00); color: black; padding: 15px 30px; border: none; border-radius: 10px; font-size: 1.2em; font-weight: bold; cursor: pointer; border: 3px solid #ffff00; transition: all 0.3s;">
+                            🚀 INICIAR SISTEMA BEAST MODE
+                        </button>
+                        <button onclick="this.closest('div').parentElement.remove()" style="background: rgba(255, 255, 255, 0.2); color: white; padding: 15px 30px; border: 2px solid white; border-radius: 10px; font-size: 1.1em; cursor: pointer; transition: all 0.3s;">
+                            📖 Continuar Leyendo
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+
+        // Función para redirigir al sistema Beast Mode
+        function redirectToBeastSystem() {
+            // Para GitHub Pages o hosting web
+            const beastSystemURL = 'beast_mode_system.html';
+            
+            // Verificar si el archivo existe antes de redirigir
+            fetch(beastSystemURL, { method: 'HEAD' })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = beastSystemURL;
+                    } else {
+                        showBeastSystemInstructions();
+                    }
+                })
+                .catch(() => {
+                    showBeastSystemInstructions();
+                });
+        }
+
+        // Mostrar instrucciones si no encuentra el archivo
+        function showBeastSystemInstructions() {
+            alert(`🎯 INSTRUCCIONES PARA ACCEDER AL SISTEMA BEAST MODE:
+
+📁 OPCIÓN 1 - ARCHIVOS LOCALES:
+1. Guarda el sistema Beast Mode como "beast_mode_system.html"
+2. Colócalo en la misma carpeta que este archivo
+3. Haz clic de nuevo en "INICIAR SISTEMA"
+
+📁 OPCIÓN 2 - GITHUB:
+1. Sube ambos archivos a tu repositorio
+2. Activa GitHub Pages
+3. Accede desde la URL de GitHub Pages
+
+📁 OPCIÓN 3 - ACCESO DIRECTO:
+Abre directamente el archivo "beast_mode_system.html" en tu navegador
+
+¡QUE COMIENCE LA TRANSFORMACIÓN!`);
+        }
+
+        // Crear partículas flotantes
+        function createParticles(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // Rotación de quotes
+        function startQuoteRotation() {
+            setInterval(() => {
+                currentQuoteIndex = (currentQuoteIndex + 1) % inspirationalQuotes.length;
+                const quote = inspirationalQuotes[currentQuoteIndex];
+                
+                const quoteElement = document.getElementById('inspirationQuote');
+                const authorElement = document.getElementById('quoteAuthor');
+                
+                // Efecto fade
+                quoteElement.style.opacity = '0';
+                authorElement.style.opacity = '0';
+                
+                setTimeout(() => {
+                    quoteElement.textContent = quote.text;
+                    authorElement.textContent = '- ' + quote.author;
+                    quoteElement.style.opacity = '1';
+                    authorElement.style.opacity = '1';
+                }, 500);
+                
+            }, 5000); // Cambiar cada 5 segundos
+        }
+
+        // Efecto de entrada para las cards
+        function animateOnScroll() {
+            const cards = document.querySelectorAll('.benefit-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'slideInUp 0.8s ease forwards';
+                    }
+                });
+            });
+
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        }
+
+        // Enter key para login
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles('particles');
+            animateOnScroll();
+            
+            document.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && document.getElementById('loginSection').style.display !== 'none') {
+                    validateLogin();
+                }
+            });
+        });
+
+        // Agregar CSS para animaciones adicionales
+        const additionalStyles = document.createElement('style');
+        additionalStyles.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+
+            @keyframes slideInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(50px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .quote, .quote-author {
+                transition: opacity 0.5s ease;
+            }
+
+            /* Efecto glow en hover para botones */
+            .accept-btn:hover {
+                box-shadow: 0 0 30px rgba(0, 255, 0, 0.6);
+            }
+
+            .login-btn:hover {
+                box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
+            }
+
+            /* Animación de background para hero */
+            .hero-section {
+                background-attachment: fixed;
+                background-size: cover;
+            }
+
+            /* Efecto parallax sutil */
+            .hero-content {
+                transform: translateZ(0);
+            }
+
+            /* Responsive mejoras */
+            @media (max-width: 480px) {
+                .hero-title {
+                    font-size: 2.5em;
+                }
+                
+                .section-title {
+                    font-size: 2em;
+                }
+                
+                .benefit-card {
+                    padding: 25px;
+                }
+                
+                .creator-card {
+                    padding: 30px;
+                }
+                
+                .commitment-box {
+                    padding: 30px;
+                }
+                
+                .login-box {
+                    padding: 20px;
+                }
+            }
+
+            /* Efecto de typing para el título */
+            .hero-title {
+                overflow: hidden;
+                animation: gradientShift 3s ease-in-out infinite, typing 2s steps(20) 1s both;
+            }
+
+            @keyframes typing {
+                from { 
+                    width: 0;
+                    opacity: 0;
+                }
+                to { 
+                    width: 100%;
+                    opacity: 1;
+                }
+            }
+
+            /* Glow effect para secciones importantes */
+            .warning-banner {
+                animation: pulse 2s infinite, glow 3s ease-in-out infinite alternate;
+            }
+
+            @keyframes glow {
+                from {
+                    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
+                }
+                to {
+                    box-shadow: 0 10px 50px rgba(255, 255, 0, 0.5);
+                }
+            }
+
+            /* Mejora visual para el scroll */
+            ::-webkit-scrollbar {
+                width: 8px;
+            }
+
+            ::-webkit-scrollbar-track {
+                background: #1a1a2e;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: linear-gradient(45deg, #ff0000, #ff6600);
+                border-radius: 4px;
+            }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: linear-gradient(45deg, #ff6600, #ffff00);
+            }
+
+            /* Efecto hover para las cards de beneficios */
+            .benefit-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(45deg, rgba(255, 0, 0, 0.1), rgba(255, 102, 0, 0.1));
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                border-radius: 20px;
+            }
+
+            .benefit-card:hover::before {
+                opacity: 1;
+            }
+
+            /* Animación de entrada para elementos */
+            .fade-in {
+                opacity: 0;
+                animation: fadeIn 1s ease forwards;
+            }
+
+            @keyframes fadeIn {
+                to {
+                    opacity: 1;
+                }
+            }
+
+            /* Efecto de zoom en imágenes hover */
+            .benefit-icon {
+                transition: transform 0.3s ease;
+            }
+
+            .benefit-card:hover .benefit-icon {
+                transform: scale(1.2) rotate(10deg);
+            }
+        `;
+        document.head.appendChild(additionalStyles);
+
+        // Función para lazy loading de animaciones
+        function initLazyAnimations() {
+            const elements = document.querySelectorAll('.benefit-card, .quote, .creator-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+
+        // Inicializar cuando se carga el contenido principal
+        function initMainContent() {
+            initLazyAnimations();
+            
+            // Agregar efectos de sonido (opcional)
+            document.querySelectorAll('button').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Pequeña vibración en móviles
+                    if (navigator.vibrate) {
+                        navigator.vibrate(50);
+                    }
+                });
+            });
+        }
+
+        // Event listeners mejorados
+        document.addEventListener('DOMContentLoaded', function() {
+            // Efectos iniciales
+            createParticles('particles');
+            
+            // Manejo de formulario
+            const inputs = document.querySelectorAll('.input-field');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.transform = 'scale(1.02)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.transform = 'scale(1)';
+                });
+            });
+            
+            // Tecla Enter en cualquier input
+            inputs.forEach(input => {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        validateLogin();
+                    }
+                });
+            });
+            
+            // Auto-focus en el primer input
+            document.getElementById('username').focus();
+        });
+
+        // Mensajes motivacionales aleatorios en console
+        const consoleMessages = [
+            "🔥 ¿Listo para cambiar tu vida?",
+            "💪 El poder está en tus manos",
+            "⚡ Tu transformación comienza AHORA",
+            "🚀 Beast Mode está esperándote",
+            "🎯 Sin excusas, solo resultados"
+        ];
+
+        console.log(consoleMessages[Math.floor(Math.random() * consoleMessages.length)]);
+        console.log("Desarrollado por Jheyner Duvan Villanueva - Sistema Beast Mode");
+        

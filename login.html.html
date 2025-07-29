@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beast Mode - Acceso Exclusivo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial Black', Arial, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 0, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 102, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(255, 255, 0, 0.1) 0%, transparent 50%);
+            animation: backgroundPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes backgroundPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        .login-container {
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(20px);
+            border: 3px solid #ff0000;
+            border-radius: 25px;
+            padding: 60px 50px;
+            box-shadow: 
+                0 0 50px rgba(255, 0, 0, 0.5),
+                inset 0 0 50px rgba(255, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 4em;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff0000, #ff6600, #ffff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: logoGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes logoGlow {
+            from { text-shadow: 0 0 20px rgba(255, 0, 0, 0.5); }
+            to { text-shadow: 0 0 40px rgba(255, 255, 0, 0.8); }
+        }
+
+        .title {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #ff0000;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            color: #cccccc;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ff6600;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #333;
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-input:focus {
+            border-color: #ff0000;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(45deg, #ff0000, #ff4444);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #ffff00;
+            margin-bottom: 20px;
+        }
+
+        .login-button:hover {
+            background: linear-gradient(45deg, #ff4444, #ff6666);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 0, 0, 0.4);
+        }
+
+        .login-button:active {
+            transform: translateY(0);
+        }
+
+        .error-message {
+            background: rgba(255, 0, 0, 0.2);
+            color: #ff4444;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ff0000;
+            margin-top: 15px;
+            font-weight: bold;
+            display: none;
+        }
+
+        .credentials-hint {
+            background: rgba(255, 102, 0, 0.1);
+            color: #ff6600;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ff6600;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+
+        .floating-icons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 1.5em;
+            color: rgba(255, 102, 0, 0.3);
+            animation: float 8s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .login-container {
+                padding: 40px 30px;
+                margin: 20px;
+            }
+            
+            .title {
+                font-size: 2em;
+            }
+            
+            .logo {
+                font-size: 3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-animation"></div>
+    <div class="floating-icons" id="floatingIcons"></div>
+    
+    <div class="login-container">
+        <div class="logo">🔥</div>
+        <h1 class="title">Beast Mode</h1>
+        <p class="subtitle">Acceso Exclusivo al Sistema de Transformación</p>
+        
+        <form onsubmit="return false;">
+            <div class="form-group">
+                <label class="form-label">Usuario</label>
+                <input type="text" class="form-input" id="usuario" placeholder="Ingresa tu usuario" autocomplete="off">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Contraseña</label>
+                <input type="password" class="form-input" id="contrasena" placeholder="Ingresa tu contraseña" autocomplete="off">
+            </div>
+            
+            <button type="button" class="login-button" onclick="validarAcceso()">
+                🚀 Acceder al Sistema
+            </button>
+        </form>
+        
+        <div class="error-message" id="mensajeError">
+            ❌ Credenciales incorrectas. Verifica usuario y contraseña.
+        </div>
+        
+        <div class="credentials-hint">
+            💡 <strong>Pista:</strong> Usuario empieza con "b" y contraseña con "s"
+        </div>
+    </div>
+
+    <script>
+        // CREDENCIALES CORRECTAS
+        const USUARIO_CORRECTO = "beast";
+        const CONTRASENA_CORRECTA = "soyganador";
+
+        // FUNCIÓN DE VALIDACIÓN SIMPLE
+        function validarAcceso() {
+            // Obtener valores
+            const usuario = document.getElementById('usuario').value;
+            const contrasena = document.getElementById('contrasena').value;
+            const error = document.getElementById('mensajeError');
+            
+            // Validar credenciales
+            if (usuario === USUARIO_CORRECTO && contrasena === CONTRASENA_CORRECTA) {
+                // LOGIN EXITOSO
+                mostrarExito();
+                setTimeout(() => {
+                    // REDIRECCIONAR A LA PÁGINA PRINCIPAL
+                    window.location.href = "index.html";
+                }, 2000);
+            } else {
+                // LOGIN FALLIDO
+                mostrarError();
+            }
+        }
+
+        // Mostrar mensaje de éxito
+        function mostrarExito() {
+            const container = document.querySelector('.login-container');
+            container.style.border = '3px solid #00ff00';
+            container.style.boxShadow = '0 0 50px rgba(0, 255, 0, 0.5)';
+            
+            const titulo = document.querySelector('.title');
+            titulo.textContent = '¡ACCESO CONCEDIDO!';
+            titulo.style.color = '#00ff00';
+            
+            const subtitle = document.querySelector('.subtitle');
+            subtitle.textContent = 'Redirigiendo al Beast Mode...';
+            subtitle.style.color = '#00ff00';
+        }
+
+        // Mostrar mensaje de error
+        function mostrarError() {
+            const error = document.getElementById('mensajeError');
+            const container = document.querySelector('.login-container');
+            
+            error.style.display = 'block';
+            container.style.animation = 'shake 0.5s';
+            
+            // Limpiar contraseña
+            document.getElementById('contrasena').value = '';
+            document.getElementById('contrasena').focus();
+            
+            // Quitar animación después de 0.5s
+            setTimeout(() => {
+                container.style.animation = '';
+            }, 500);
+            
+            // Ocultar error después de 3s
+            setTimeout(() => {
+                error.style.display = 'none';
+            }, 3000);
+        }
+
+        // Manejar Enter key
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                validarAcceso();
+            }
+        });
+
+        // Crear iconos flotantes
+        function crearIconosFlotantes() {
+            const icons = ['🔥', '⚡', '💪', '🚀', '🎯', '🏆'];
+            const container = document.getElementById('floatingIcons');
+            
+            setInterval(() => {
+                const icon = document.createElement('div');
+                icon.className = 'floating-icon';
+                icon.textContent = icons[Math.floor(Math.random() * icons.length)];
+                icon.style.left = Math.random() * 100 + '%';
+                icon.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                icon.style.animationDelay = Math.random() * 2 + 's';
+                
+                container.appendChild(icon);
+                
+                // Eliminar después de la animación
+                setTimeout(() => {
+                    if (icon.parentElement) {
+                        icon.remove();
+                    }
+                }, 10000);
+            }, 2000);
+        }
+
+        // Animación de shake
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Inicializar
+        window.onload = function() {
+            crearIconosFlotantes();
+            document.getElementById('usuario').focus();
+        };
+    </script>
+</body>
+</html>
